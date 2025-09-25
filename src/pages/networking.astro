@@ -43,22 +43,25 @@ import headshot from "@assets/Frank_Headshot.jpg";
         class="w-[100px] rounded-full"
       />
       <h1 class="text-3xl font-bold">Frank Matranga</h1>
-      <h2 class="text-lg text-gray-600">{COMPANY_LEGAL_NAME}</h2>
-      <p class="text-base">
-        Phone:{" "}
-        <a class="text-blue-600 hover:underline" href={`tel:${CONTACT_PHONE}`}>
-          {CONTACT_PHONE_DISPLAY}
-        </a>
-      </p>
-      <p class="text-base">
-        Email:{" "}
-        <a
-          class="text-blue-600 hover:underline"
-          href={"mailto:" + CONTACT_EMAIL}
-        >
-          {CONTACT_EMAIL}
-        </a>
-      </p>
+      <div class="flex flex-col gap-1">
+        <h2 class="text-lg text-gray-600">{COMPANY_LEGAL_NAME}</h2>
+        <p class="text-base">
+          <a
+            class="text-blue-600 hover:underline"
+            href={"mailto:" + CONTACT_EMAIL}
+          >
+            {CONTACT_EMAIL}
+          </a>
+        </p>
+        <p class="text-base">
+          <a
+            class="text-blue-600 hover:underline"
+            href={`tel:${CONTACT_PHONE}`}
+          >
+            {CONTACT_PHONE_DISPLAY}
+          </a>
+        </p>
+      </div>
       <div>
         <a href="/frank-matranga.vcf" download>
           <img
