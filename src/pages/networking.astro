@@ -17,10 +17,19 @@ import headshot from "@assets/Frank_Headshot.jpg";
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
+    <meta
+      name="viewport"
+      content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <meta name="generator" content={Astro.generator} />
     <title>Matranga Codeworks</title>
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="theme-color" content="rgba(252, 70, 107, 1)" />
   </head>
   <body
     class="h-[100dvh] font-display text-text-dark p-8 flex flex-col place-content-center"
@@ -62,23 +71,42 @@ import headshot from "@assets/Frank_Headshot.jpg";
           </p>
         </a>
       </div>
-      <p id="debug"></p>
     </section>
     <script>
       const debug = document.getElementById("debug");
       const card = document.querySelector("section") as HTMLDivElement;
-      window.addEventListener("deviceorientation", (event) => {
-        // gamma: left-to-right tilt (-90 to 90)
-        // beta: front-to-back tilt (-180 to 180)
-        const gamma = event.gamma || 0;
-        const beta = event.beta || 0;
-        // Map orientation to translation (tweak multiplier for effect)
-        const x = gamma * 2;
-        const y = beta * 1.2 - 60; // center the card more naturally
-        card.style.transform = `translate(${x}px, ${y}px)`;
-        console.log(`gamma: ${gamma}, beta: ${beta}`);
-        if (debug)
-          debug.textContent = `gamma: ${gamma.toFixed(2)}, beta: ${beta.toFixed(2)}`;
+      function enableOrientation() {
+        const debug = document.getElementById("debug");
+        const card = document.querySelector("section") as HTMLElement | null;
+        window.addEventListener("deviceorientation", (event) => {
+          const gamma = event.gamma || 0; // left-right tilt
+          const beta = event.beta || 0; // front-back tilt
+          // Map orientation to gradient center
+          // When phone is flat, beta ~0, gamma ~0
+          const x = 50 + gamma * 1.5; // left/right pan, less sensitive
+          const y = 50 + beta * 1.5; // up/down pan, less sensitive
+          document.body.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%)`;
+        });
+      }
+
+      function requestOrientationPermissionIfNeeded() {
+        if (
+          typeof DeviceOrientationEvent !== "undefined" &&
+          typeof DeviceOrientationEvent.requestPermission === "function"
+        ) {
+          DeviceOrientationEvent.requestPermission().then((response) => {
+            if (response === "granted") {
+              enableOrientation();
+            }
+          });
+        } else {
+          enableOrientation();
+        }
+      }
+
+      document.addEventListener("click", function activateOrientationOnce() {
+        requestOrientationPermissionIfNeeded();
+        document.removeEventListener("click", activateOrientationOnce);
       });
     </script>
   </body>
@@ -86,7 +114,7 @@ import headshot from "@assets/Frank_Headshot.jpg";
 
 <style>
   body {
-    background: #3f5efb;
+    background-color: #3f5efb;
     background: radial-gradient(
       circle,
       rgba(63, 94, 251, 1) 0%,
