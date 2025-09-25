@@ -11,7 +11,8 @@ import "../styles/global.css";
 
 import headshot from "@assets/Frank_Headshot.jpg";
 ---
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -21,8 +22,10 @@ import headshot from "@assets/Frank_Headshot.jpg";
     <title>Matranga Codeworks</title>
     <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
-  <body class="font-display text-text-dark bg-[#fdfdfd]">
-    <section class="flex flex-col gap-2 items-center bg-white max-w-[400px] mx-auto p-8 rounded-2xl shadow-lg text-center">
+  <body class="font-display text-text-dark">
+    <section
+      class="my-8 flex flex-col gap-2 items-center bg-white max-w-[400px] mx-auto p-8 rounded-2xl shadow-lg text-center"
+    >
       <Image
         src={headshot}
         alt="Frank Matranga Headshot"
@@ -59,5 +62,15 @@ import headshot from "@assets/Frank_Headshot.jpg";
       </div>
     </section>
   </body>
-</html>;
----
+</html>
+
+<style>
+  body {
+    background: #3f5efb;
+    background: radial-gradient(
+      circle,
+      rgba(63, 94, 251, 1) 0%,
+      rgba(252, 70, 107, 1) 100%
+    );
+  }
+</style>
