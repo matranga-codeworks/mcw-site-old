@@ -2,14 +2,16 @@
 import {
   CONTACT_EMAIL,
   COMPANY_LEGAL_NAME,
-  COMPANY_LOCATION,
   CONTACT_PHONE,
   CONTACT_PHONE_DISPLAY,
 } from "@lib/company";
+import { Image } from "astro:assets";
 
 import "../styles/global.css";
----
 
+import headshot from "@assets/Frank_Headshot.jpg";
+---
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -20,26 +22,28 @@ import "../styles/global.css";
     <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
   <body class="font-display text-text-dark bg-[#fdfdfd]">
-    <section
-      class="flex flex-col gap-2 items-center bg-white max-w-[400px] mx-auto p-8 rounded-2xl shadow-lg text-center"
-    >
-      <img
-        src="/src/assets/Frank_Headshot.jpg"
+    <section class="flex flex-col gap-2 items-center bg-white max-w-[400px] mx-auto p-8 rounded-2xl shadow-lg text-center">
+      <Image
+        src={headshot}
         alt="Frank Matranga Headshot"
         class="w-[100px] rounded-full"
       />
       <h1 class="text-3xl font-bold">Frank Matranga</h1>
       <h2 class="text-lg text-gray-600">{COMPANY_LEGAL_NAME}</h2>
       <p class="text-base">
-        Phone: <a class="text-blue-600 hover:underline" href={`tel:${CONTACT_PHONE}`}>
-          {CONTACT_PHONE_DISPLAY}</a
-        >
+        Phone:{" "}
+        <a class="text-blue-600 hover:underline" href={`tel:${CONTACT_PHONE}`}>
+          {CONTACT_PHONE_DISPLAY}
+        </a>
       </p>
       <p class="text-base">
-        Email: <a
+        Email:{" "}
+        <a
           class="text-blue-600 hover:underline"
-          href={"mailto:" + CONTACT_EMAIL}>{CONTACT_EMAIL}</a
+          href={"mailto:" + CONTACT_EMAIL}
         >
+          {CONTACT_EMAIL}
+        </a>
       </p>
       <div>
         <a href="/frank-matranga.vcf" download>
@@ -55,4 +59,5 @@ import "../styles/global.css";
       </div>
     </section>
   </body>
-</html>
+</html>;
+---
