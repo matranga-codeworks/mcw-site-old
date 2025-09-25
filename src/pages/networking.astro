@@ -1,0 +1,58 @@
+---
+import {
+  CONTACT_EMAIL,
+  COMPANY_LEGAL_NAME,
+  COMPANY_LOCATION,
+  CONTACT_PHONE,
+  CONTACT_PHONE_DISPLAY,
+} from "@lib/company";
+
+import "../styles/global.css";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Matranga Codeworks</title>
+    <link rel="sitemap" href="/sitemap-index.xml" />
+  </head>
+  <body class="font-display text-text-dark bg-[#fdfdfd]">
+    <section
+      class="flex flex-col gap-2 items-center bg-white max-w-[400px] mx-auto p-8 rounded-2xl shadow-lg text-center"
+    >
+      <img
+        src="/src/assets/Frank_Headshot.jpg"
+        alt="Frank Matranga Headshot"
+        class="w-[100px] rounded-full"
+      />
+      <h1 class="text-3xl font-bold">Frank Matranga</h1>
+      <h2 class="text-lg text-gray-600">{COMPANY_LEGAL_NAME}</h2>
+      <p class="text-base">
+        Phone: <a class="text-blue-600 hover:underline" href={`tel:${CONTACT_PHONE}`}>
+          {CONTACT_PHONE_DISPLAY}</a
+        >
+      </p>
+      <p class="text-base">
+        Email: <a
+          class="text-blue-600 hover:underline"
+          href={"mailto:" + CONTACT_EMAIL}>{CONTACT_EMAIL}</a
+        >
+      </p>
+      <div>
+        <a href="/frank-matranga.vcf" download>
+          <img
+            src="/qr-contact-card.png"
+            alt="QR code to download contact card"
+            class="w-[120px] mx-auto"
+          />
+          <p class="text-sm text-gray-500 mt-2">
+            Scan or tap to download my contact card
+          </p>
+        </a>
+      </div>
+    </section>
+  </body>
+</html>
