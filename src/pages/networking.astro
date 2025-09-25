@@ -22,7 +22,9 @@ import headshot from "@assets/Frank_Headshot.jpg";
     <title>Matranga Codeworks</title>
     <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
-  <body class="h-[100dvh] font-display text-text-dark p-8 flex flex-col place-content-center">
+  <body
+    class="h-[100dvh] font-display text-text-dark p-8 flex flex-col place-content-center"
+  >
     <section
       class="flex flex-col gap-2 items-center bg-white max-w-[400px] mx-auto p-8 rounded-2xl shadow-lg text-center"
     >
@@ -60,7 +62,25 @@ import headshot from "@assets/Frank_Headshot.jpg";
           </p>
         </a>
       </div>
+      <p id="debug"></p>
     </section>
+    <script>
+      const debug = document.getElementById("debug");
+      const card = document.querySelector("section") as HTMLDivElement;
+      window.addEventListener("deviceorientation", (event) => {
+        // gamma: left-to-right tilt (-90 to 90)
+        // beta: front-to-back tilt (-180 to 180)
+        const gamma = event.gamma || 0;
+        const beta = event.beta || 0;
+        // Map orientation to translation (tweak multiplier for effect)
+        const x = gamma * 2;
+        const y = beta * 1.2 - 60; // center the card more naturally
+        card.style.transform = `translate(${x}px, ${y}px)`;
+        console.log(`gamma: ${gamma}, beta: ${beta}`);
+        if (debug)
+          debug.textContent = `gamma: ${gamma.toFixed(2)}, beta: ${beta.toFixed(2)}`;
+      });
+    </script>
   </body>
 </html>
 
