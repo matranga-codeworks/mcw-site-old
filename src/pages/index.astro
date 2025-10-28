@@ -571,17 +571,14 @@ const faq = [
                 <Button type="submit" variant="secondary">Get in Touch</Button>
               </form> -->
 
-              <!-- Start of Meetings Embed Script -->
-              <div
-                class="meetings-iframe-container"
-                data-src="https://meetings-na2.hubspot.com/frank-matranga?embed=true"
-              >
-              </div>
-              <script
-                type="text/javascript"
-                src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"
-              ></script>
-              <!-- End of Meetings Embed Script -->
+              <!-- Google Calendar Appointment Scheduling begin -->
+              <iframe
+                src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3MX94psMGAFeCoftM2SwascHtxoRfUt1k8t3HSvZto2cFc9JuAYmKQ7h0kmv_00HgTaHkqGKOf?gv=true"
+                style="border: 0"
+                width="100%"
+                height="600"
+                frameborder="0"></iframe>
+              <!-- end Google Calendar Appointment Scheduling -->
             </div>
           </div>
         </div>
@@ -692,7 +689,7 @@ const faq = [
     animate(
       element,
       { opacity: [0, 1], y: [20, 0] },
-      { duration: 0.5, easing: "ease-out" }
+      { duration: 0.5, easing: "ease-out" },
     );
   });
 
@@ -700,7 +697,7 @@ const faq = [
     animate(
       ".service-cards .service",
       { opacity: [0, 1], y: [20, 0] },
-      { delay: stagger(0.25), duration: 0.5, easing: "ease-out" }
+      { delay: stagger(0.25), duration: 0.5, easing: "ease-out" },
     );
   });
 
@@ -708,20 +705,20 @@ const faq = [
     animate(
       element,
       { opacity: [0, 1], y: [20, 0] },
-      { duration: 0.5, easing: "ease-out", delay: 0.15 }
+      { duration: 0.5, easing: "ease-out", delay: 0.15 },
     );
   });
 
   animate(
     "#heading h1 span:not(.period)",
     { opacity: [0, 1], y: [-20, 0] },
-    { delay: stagger(0.02) }
+    { delay: stagger(0.02) },
   );
 
   animate(
     "aside > div",
     { opacity: [0, 1], y: [-20, 0] },
-    { delay: stagger(0.05) }
+    { delay: stagger(0.05) },
   );
 
   inView("#faq", (element) => {
@@ -730,7 +727,7 @@ const faq = [
       { opacity: [0, 1], x: [-20, 0] },
       {
         delay: stagger(0.1),
-      }
+      },
     );
   });
 </script>
