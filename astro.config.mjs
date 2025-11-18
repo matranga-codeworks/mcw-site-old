@@ -20,4 +20,11 @@ export default defineConfig({
   },
 
   integrations: [sitemap(), compressor()],
+
+  redirects: {
+    "/slides": {
+      status: 301,
+      destination: "https://docs.google.com/presentation/d/1wHxpv7rBue7LJlMmGvgA9DPk0yZ9bcnpZt0IMxJ9MLQ/present"
+    }
+  }
 });
