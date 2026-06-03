@@ -2,7 +2,11 @@
 import { SEO } from "astro-seo";
 import { Image } from "astro:assets";
 
-import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from "@lib/company";
+import {
+  CONTACT_EMAIL,
+  CONTACT_PHONE,
+  CONTACT_PHONE_DISPLAY,
+} from "@lib/company";
 import Icon from "@components/LucideIcon.astro";
 import Monogram from "@assets/monogram.svg";
 import HeadshotImg from "@assets/Frank_Headshot.jpg";
@@ -103,8 +107,16 @@ const work = [
 ] as const;
 
 const clients = [
-  { name: "Preston Center of Compassion", sub: "Bronx, NY · Non-profit", logo: PCCWordmark },
-  { name: "Rensselaer Center for Open Source", sub: "Troy, NY · RPI", logo: RCOSLockup },
+  {
+    name: "Preston Center of Compassion",
+    sub: "Bronx, NY · Non-profit",
+    logo: PCCWordmark,
+  },
+  {
+    name: "Rensselaer Center for Open Source",
+    sub: "Troy, NY · RPI",
+    logo: RCOSLockup,
+  },
   { name: "Soapbox Hosting", sub: "Podcast platform", logo: null },
 ];
 
@@ -121,7 +133,10 @@ const steps = [
     "Proposal",
     "Only then do I send a detailed proposal, with an approach and pricing shaped around what I learned.",
   ],
-  ["Kickoff", "Once you approve, I schedule a kickoff meeting and start building."],
+  [
+    "Kickoff",
+    "Once you approve, I schedule a kickoff meeting and start building.",
+  ],
 ];
 
 const faqs = [
@@ -211,15 +226,14 @@ const faqs = [
   <body>
     <div class="announce">
       Now booking projects for Summer 2026 and beyond —{" "}
-      <a href="#contact">get in touch</a> or call <a href={"tel:" + CONTACT_PHONE}
-        >(518)&nbsp;217&#8209;8298</a
+      <a href="#contact">get in touch</a> or call <a
+        href={"tel:" + CONTACT_PHONE}>(518)&nbsp;217&#8209;8298</a
       >.
     </div>
 
     <header class="site-header">
       <div class="wrap">
         <a class="brand" href="#top">
-          <Monogram width={30} height={30} style="color: var(--ink)" aria-hidden="true" />
           <b>Matranga&nbsp;Codeworks</b>
         </a>
         <nav class="nav">
@@ -227,7 +241,9 @@ const faqs = [
           <a class="navlink" href="#work">Work</a>
           <a class="navlink" href="#about">About</a>
           <a class="navlink" href="#faq">FAQ</a>
-          <a class="btn btn--primary btn--sm" href="#contact">Free consultation</a>
+          <a class="btn btn--primary btn--sm" href="#contact"
+            >Free consultation</a
+          >
         </nav>
       </div>
     </header>
@@ -235,8 +251,12 @@ const faqs = [
     <main>
       <!-- Hero -->
       <section class="hero band-blue" id="top">
-        <span class="reg-mark" style="top:18px;left:18px;color:var(--draft-cyan)"></span>
-        <span class="reg-mark" style="top:18px;right:18px;color:var(--draft-cyan)"></span>
+        <span
+          class="reg-mark"
+          style="top:18px;left:18px;color:var(--draft-cyan)"></span>
+        <span
+          class="reg-mark"
+          style="top:18px;right:18px;color:var(--draft-cyan)"></span>
         <div class="wrap">
           <div>
             <span class="eyebrow" style="color:var(--brass-bright)"
@@ -245,11 +265,13 @@ const faqs = [
             <h1>Your local software&nbsp;partner.</h1>
             <p class="lead">
               Custom software for New York Capital Region small businesses and
-              non&#8209;profits — built around the way your organization actually
-              works, by one engineer who's right here in the community.
+              non&#8209;profits — built around the way your organization
+              actually works, by one engineer who's right here in the community.
             </p>
             <div class="hero-cta">
-              <a class="btn btn--on-blue btn--lg" href="#contact">Free consultation</a>
+              <a class="btn btn--on-blue btn--lg" href="#contact"
+                >Free consultation</a
+              >
               <a
                 class="btn btn--lg"
                 href="#work"
@@ -259,8 +281,9 @@ const faqs = [
             </div>
           </div>
           <div class="hero-spec">
-            <span class="reg-mark" style="top:10px;right:10px;color:var(--blueprint-ink-2)"
-            ></span>
+            <span
+              class="reg-mark"
+              style="top:10px;right:10px;color:var(--blueprint-ink-2)"></span>
             <div
               style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--blueprint-ink-2);margin-bottom:8px"
             >
@@ -283,12 +306,17 @@ const faqs = [
         <div class="wrap">
           <div class="section-head">
             <span class="eyebrow">Section 01 — Capabilities</span>
-            <h2 class="section-title">How I help your local organization grow</h2>
+            <h2 class="section-title">
+              How I help your local organization grow
+            </h2>
           </div>
           <div class="svc-grid">
             {
               services.map((it, i) => (
-                <div class="svc-card reveal" style={`transition-delay:${i * 70}ms`}>
+                <div
+                  class="svc-card reveal"
+                  style={`transition-delay:${i * 70}ms`}
+                >
                   <span class="num">{it.n}</span>
                   <Icon name={it.icon} size={30} color="var(--brass-deep)" />
                   <h3>{it.title}</h3>
@@ -326,7 +354,11 @@ const faqs = [
                     <p class="result">{w.result}</p>
                     <span class="more">
                       View case{" "}
-                      <Icon name="arrow-right" size={14} color="var(--brass-deep)" />
+                      <Icon
+                        name="arrow-right"
+                        size={14}
+                        color="var(--brass-deep)"
+                      />
                     </span>
                   </div>
                 </button>
@@ -348,10 +380,21 @@ const faqs = [
               clients.map((c, i) => (
                 <div class="reveal" style={`transition-delay:${i * 70}ms`}>
                   <div class="client-mark" title={c.name}>
-                    <span class="reg-mark" style="top:8px;left:8px;color:var(--hairline-2)" />
-                    <span class="reg-mark" style="top:8px;right:8px;color:var(--hairline-2)" />
+                    <span
+                      class="reg-mark"
+                      style="top:8px;left:8px;color:var(--hairline-2)"
+                    />
+                    <span
+                      class="reg-mark"
+                      style="top:8px;right:8px;color:var(--hairline-2)"
+                    />
                     {c.logo ? (
-                      <Image src={c.logo} alt={c.name} width={320} densities={[1, 2]} />
+                      <Image
+                        src={c.logo}
+                        alt={c.name}
+                        width={320}
+                        densities={[1, 2]}
+                      />
                     ) : (
                       <span class="wordmark">{c.name}</span>
                     )}
@@ -362,8 +405,8 @@ const faqs = [
             }
           </div>
           <p class="clients-note">
-            Proudly serving small businesses &amp; non-profits across Albany, Troy,
-            Schenectady, Saratoga &amp; the greater Capital Region.
+            Proudly serving small businesses &amp; non-profits across Albany,
+            Troy, Schenectady, Saratoga &amp; the greater Capital Region.
           </p>
         </div>
       </section>
@@ -377,11 +420,12 @@ const faqs = [
           <div class="quote-wrap reveal">
             <div class="quote-mark">&ldquo;</div>
             <p class="quote-body">
-              We’ve worked with Frank for years and he’s been amazing. He helped us take
-              our fundraisers online during the pandemic so we could keep supporting the
-              Bronx community. He really understands what we’re trying to do — everything
-              from our fundraising events to summer camp and afterschool programs runs more
-              smoothly and reaches more families than ever before.
+              We’ve worked with Frank for years and he’s been amazing. He helped
+              us take our fundraisers online during the pandemic so we could
+              keep supporting the Bronx community. He really understands what
+              we’re trying to do — everything from our fundraising events to
+              summer camp and afterschool programs runs more smoothly and
+              reaches more families than ever before.
             </p>
             <div class="quote-attr">— Preston Center of Compassion</div>
           </div>
@@ -401,31 +445,39 @@ const faqs = [
                 class="portrait-img"
               />
               <span class="portrait-scrim"></span>
-              <span class="reg-mark" style="top:12px;left:12px;color:var(--draft-cyan)"></span>
-              <span class="reg-mark" style="top:12px;right:12px;color:var(--draft-cyan)"></span>
+              <span
+                class="reg-mark"
+                style="top:12px;left:12px;color:var(--draft-cyan)"></span>
+              <span
+                class="reg-mark"
+                style="top:12px;right:12px;color:var(--draft-cyan)"></span>
               <span class="tag">FRANK MATRANGA · COHOES, NY</span>
             </div>
             <div class="reveal" style="transition-delay:90ms">
-              <span class="eyebrow">Section 03 — Your local technical partner</span>
+              <span class="eyebrow"
+                >Section 03 — Your local technical partner</span
+              >
               <h2 style="margin-top:16px">
                 Right here in the community, when you need&nbsp;support.
               </h2>
               <p>
-                I’m Frank Matranga — a NYC-born software engineer and current Director of
-                Engineering at a healthcare technology company, with a dual degree from RPI
-                in Computer Science &amp; Information Technology and Web Science.
+                I’m Frank Matranga — a NYC-native, Cohoes-based, RPI-educated,
+                software engineer. I bring extensive experience in the financial
+                and healthcare technology industries.
               </p>
               <p>
-                I’ve spent 5+ years building systems local businesses depend on every day.
-                After seven years in the Capital Region, I’m invested in seeing our local
-                organizations thrive — work with me and you’re partnering with someone who
-                cares about your success and is right here when you need support.
+                I’ve spent 5+ years building systems local businesses depend on
+                every day. After seven years in the Capital Region, I’m invested
+                in seeing our local organizations thrive — work with me and
+                you’re partnering with someone who cares about your success and
+                is right here when you need support.
               </p>
               <p style="color:var(--ink-3);font-size:15.5px">
-                When I’m not coding, you’ll find me coworking in Troy over an iced chai,
-                hiking the Catskills, or wandering Hudson Valley farmers’ markets.
+                When I’m not coding, you’ll find me coworking in Troy over an
+                iced chai, hiking the Catskills, or wandering Hudson Valley
+                farmers’ markets.
               </p>
-              <div class="sig">— Frank Matranga</div>
+              <div class="sig">— Frank Matranga, Owner</div>
             </div>
           </div>
         </div>
@@ -442,7 +494,10 @@ const faqs = [
             {
               faqs.map((f, i) => (
                 <div class={"faq-item" + (i === 0 ? " open" : "")}>
-                  <button class="faq-q" aria-expanded={i === 0 ? "true" : "false"}>
+                  <button
+                    class="faq-q"
+                    aria-expanded={i === 0 ? "true" : "false"}
+                  >
                     {f.q}
                     <span class="chev">
                       <Icon name="plus" size={20} color="var(--brass-deep)" />
@@ -467,14 +522,19 @@ const faqs = [
             <p
               style="font-size:17px;line-height:1.6;color:var(--ink-2);margin:0;max-width:54ch"
             >
-              Pick a time that works for you and we’ll talk — a free consultation to get to
-              know you, your organization, and its needs. No charge, no obligation.
+              Pick a time that works for you and we’ll talk — a free
+              consultation to get to know you, your organization, and its needs.
+              No charge, no obligation.
             </p>
           </div>
           <div class="contact-grid contact-grid--book">
             <div class="schedule">
               <div class="schedule-head">
-                <Icon name="calendar-check" size={18} color="var(--brass-deep)" />
+                <Icon
+                  name="calendar-check"
+                  size={18}
+                  color="var(--brass-deep)"
+                />
                 <span>Book a free consultation</span>
               </div>
               <!-- Google Calendar Appointment Scheduling begin -->
@@ -491,7 +551,9 @@ const faqs = [
                 {
                   steps.map(([t, d], i) => (
                     <div class="proc-step">
-                      <span class="proc-n">{String(i + 1).padStart(2, "0")}</span>
+                      <span class="proc-n">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
                       <div>
                         <div class="proc-t">{t}</div>
                         <div class="proc-d">{d}</div>
@@ -524,14 +586,10 @@ const faqs = [
       <div class="wrap">
         <div class="footer-top">
           <a class="brand" href="#top" style="align-items:flex-start">
-            <Monogram
-              width={38}
-              height={38}
-              style="color: var(--blueprint-ink)"
-              aria-hidden="true"
-            />
             <span>
-              <b style="color:var(--blueprint-ink);display:block">Matranga&nbsp;Codeworks</b>
+              <b style="color:var(--blueprint-ink);display:block"
+                >Matranga&nbsp;Codeworks</b
+              >
               <span
                 style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.16em;color:var(--draft-cyan)"
                 >YOUR LOCAL SOFTWARE PARTNER</span
@@ -551,8 +609,10 @@ const faqs = [
               <span class="h">Get in touch</span>
               <a href={"mailto:" + CONTACT_EMAIL}>{CONTACT_EMAIL}</a>
               <a href={"tel:" + CONTACT_PHONE}>{CONTACT_PHONE_DISPLAY}</a>
-              <a href="https://www.linkedin.com/in/frank-matranga/" target="_blank" rel="noreferrer"
-                >LinkedIn</a
+              <a
+                href="https://www.linkedin.com/in/frank-matranga/"
+                target="_blank"
+                rel="noreferrer">LinkedIn</a
               >
               <a href="#footer">Cohoes, NY</a>
             </div>
@@ -560,8 +620,10 @@ const faqs = [
         </div>
         <div class="footer-rule"></div>
         <div class="footer-bottom">
-          <span>© {new Date().getFullYear()} MATRANGA CODEWORKS LLC · ALL RIGHTS RESERVED</span>
-          <span>BUILT IN NEW YORK'S CAPITAL REGION</span>
+          <span
+            >© {new Date().getFullYear()} MATRANGA CODEWORKS LLC · ALL RIGHTS RESERVED</span
+          >
+          <span>BUILT WITH ♥️ IN NEW YORK'S CAPITAL REGION</span>
         </div>
       </div>
     </footer>
@@ -583,9 +645,7 @@ const faqs = [
               </span>
             </div>
             <div class="mbody">
-              <div
-                style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.08em;color:var(--ink-3);margin-bottom:6px"
-              >
+              <div style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.08em;color:var(--ink-3);margin-bottom:6px">
                 {w.client}
               </div>
               <h3>{w.title}</h3>
@@ -600,9 +660,7 @@ const faqs = [
               <p style="font-size:16px;line-height:1.62;color:var(--ink-2);margin:0">
                 {w.summary}
               </p>
-              <div
-                style="margin-top:22px;display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:12px;color:var(--brass-deep);letter-spacing:0.04em"
-              >
+              <div style="margin-top:22px;display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:12px;color:var(--brass-deep);letter-spacing:0.04em">
                 <Icon name="blocks" size={16} color="var(--brass-deep)" />
                 {w.stack}
               </div>
@@ -627,7 +685,11 @@ const faqs = [
       .portrait-scrim {
         position: absolute;
         inset: 0;
-        background: linear-gradient(to top, rgba(11, 34, 54, 0.78), transparent 46%);
+        background: linear-gradient(
+          to top,
+          rgba(11, 34, 54, 0.78),
+          transparent 46%
+        );
       }
       .portrait .reg-mark,
       .portrait .tag {
@@ -638,9 +700,13 @@ const faqs = [
 
     <script>
       // Reveal-on-scroll
-      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const reduce = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
       if (reduce) {
-        document.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+        document
+          .querySelectorAll(".reveal")
+          .forEach((el) => el.classList.add("in"));
       } else {
         const io = new IntersectionObserver(
           (entries) => {
@@ -680,23 +746,27 @@ const faqs = [
           .forEach((m) => (m.style.display = "none"));
         document.body.style.overflow = "";
       };
-      document.querySelectorAll<HTMLElement>("[data-open-work]").forEach((card) => {
-        card.addEventListener("click", () => {
-          const id = card.getAttribute("data-open-work");
-          const modal = document.querySelector<HTMLElement>(
-            `.modal-scrim[data-modal="${id}"]`,
-          );
-          if (modal) {
-            modal.style.display = "grid";
-            document.body.style.overflow = "hidden";
-          }
+      document
+        .querySelectorAll<HTMLElement>("[data-open-work]")
+        .forEach((card) => {
+          card.addEventListener("click", () => {
+            const id = card.getAttribute("data-open-work");
+            const modal = document.querySelector<HTMLElement>(
+              `.modal-scrim[data-modal="${id}"]`,
+            );
+            if (modal) {
+              modal.style.display = "grid";
+              document.body.style.overflow = "hidden";
+            }
+          });
         });
-      });
-      document.querySelectorAll<HTMLElement>(".modal-scrim").forEach((scrim) => {
-        scrim.addEventListener("click", (e) => {
-          if (e.target === scrim) closeModals();
+      document
+        .querySelectorAll<HTMLElement>(".modal-scrim")
+        .forEach((scrim) => {
+          scrim.addEventListener("click", (e) => {
+            if (e.target === scrim) closeModals();
+          });
         });
-      });
       document
         .querySelectorAll<HTMLButtonElement>(".modal .mclose")
         .forEach((b) => b.addEventListener("click", closeModals));
@@ -704,5 +774,7 @@ const faqs = [
         if (e.key === "Escape") closeModals();
       });
     </script>
+
+
   </body>
 </html>
