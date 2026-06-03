@@ -1,0 +1,121 @@
+/* ============================================================================
+   MATRANGA CODEWORKS — Component primitives
+   Requires colors_and_type.css. Shared by preview cards and the UI kit.
+   ============================================================================ */
+
+/* ---- Buttons ------------------------------------------------------------ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1;
+  padding: 13px 22px;
+  border-radius: var(--r-sm);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background var(--dur-fast) var(--ease),
+              color var(--dur-fast) var(--ease),
+              border-color var(--dur-fast) var(--ease),
+              transform var(--dur-fast) var(--ease);
+}
+.btn:active { transform: translateY(1px); }
+
+.btn--primary { background: var(--brass); color: #FBF8F1; box-shadow: 0 1.5px 0 var(--brass-deep); }
+.btn--primary:hover { background: var(--brass-deep); box-shadow: 0 1.5px 0 #7e521c; }
+
+.btn--secondary { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn--secondary:hover { background: var(--ink); color: var(--paper); }
+
+.btn--ghost { background: transparent; color: var(--ink-2); }
+.btn--ghost:hover { color: var(--ink); background: var(--paper-2); }
+
+.btn--on-blue { background: var(--brass); color: #FBF8F1; }
+.btn--on-blue:hover { background: var(--brass-bright); color: var(--blueprint-900); }
+
+.btn--sm { padding: 9px 15px; font-size: 13.5px; }
+.btn--lg { padding: 16px 28px; font-size: 16px; }
+
+/* link with brass underline wipe */
+.link {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 500;
+  background-image: linear-gradient(var(--brass), var(--brass));
+  background-size: 0% 1.5px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size var(--dur) var(--ease);
+  padding-bottom: 2px;
+}
+.link:hover { background-size: 100% 1.5px; }
+
+/* ---- Form fields -------------------------------------------------------- */
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field > label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.input {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--hairline-2);
+  border-radius: var(--r-sm);
+  padding: 11px 13px;
+  transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+.input::placeholder { color: var(--ink-3); }
+.input:focus {
+  outline: none;
+  border-color: var(--brass);
+  box-shadow: 0 0 0 3px rgba(188, 128, 56, 0.16);
+}
+textarea.input { resize: vertical; min-height: 84px; }
+
+/* ---- Card --------------------------------------------------------------- */
+.surface-card {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-5);
+}
+.surface-card--blue {
+  background: var(--blueprint-800);
+  background-image: var(--grid-blueprint);
+  background-size: var(--grid-size) var(--grid-size);
+  color: var(--blueprint-ink);
+  border: 1px solid var(--blueprint-700);
+}
+
+/* ---- Badge / chip ------------------------------------------------------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: var(--r-xs);
+  border: 1px solid var(--hairline-2);
+  color: var(--ink-2);
+  background: var(--paper-2);
+}
+.badge--brass { color: var(--brass-deep); border-color: var(--brass); background: var(--brass-tint); }
+.badge--success { color: #2c5c3e; border-color: #9cc3a9; background: var(--success-tint); }
+.badge--info { color: #1f4a6c; border-color: #9bc0db; background: var(--info-tint); }
+.badge--dot::before { content:""; width:6px; height:6px; border-radius:999px; background: currentColor; }

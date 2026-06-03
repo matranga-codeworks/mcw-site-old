@@ -2,82 +2,168 @@
 import { SEO } from "astro-seo";
 import { Image } from "astro:assets";
 
-import {
-  CONTACT_EMAIL,
-  COMPANY_LEGAL_NAME,
-  COMPANY_LOCATION,
-  CONTACT_PHONE,
-  CONTACT_PHONE_DISPLAY,
-} from "@lib/company";
-import Navbar from "@components/Navbar.astro";
-import Button from "@components/Button.astro";
-import SectionHeader from "@components/SectionHeader.astro";
-import ServiceCard from "@components/ServiceCard.astro";
-
-import CaretDownBold from "@assets/icons/caret-down-bold.svg";
-import Gear from "@assets/gear.svg";
+import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_DISPLAY } from "@lib/company";
+import Icon from "@components/LucideIcon.astro";
+import Monogram from "@assets/monogram.svg";
 import HeadshotImg from "@assets/Frank_Headshot.jpg";
 import PCCWordmark from "@assets/organizations/pcc_wordmark.png";
 import RCOSLockup from "@assets/organizations/rcos_lockup.png";
 
-import "../styles/global.css";
+import "../styles/site/colors_and_type.css";
+import "../styles/site/components.css";
+import "../styles/site/site.css";
 
-const faq = [
-  {
-    question: "What does custom software development cost?",
-    answer:
-      "Project costs vary based on complexity and scope, typically ranging from $10,000 for simple business tools to $75,000+ for fully comprehensive systems. I provide detailed estimates after understanding your specific needs and always discuss budget upfront to ensure we're on the same page.",
-  },
-  {
-    question: "Do you offer payment plans?",
-    answer:
-      "Yes, I structure payments around project milestones, so you're never paying for work that hasn't been completed. Most projects are split into 3-4 payments over the development timeline. An example payment schedule might look like this: 25% upfront, 50% at milestones, 25% at completion.",
-  },
-  {
-    question: "How long do projects typically take?",
-    answer:
-      "Simple applications usually take 6-12 weeks, while comprehensive business systems can take 3-6 months. I provide realistic timelines upfront and keep you updated on progress throughout.",
-  },
-  {
-    question: "What happens if my needs change during development?",
-    answer:
-      "I build flexibility into every project plan. Minor adjustments are included, and I'll always discuss costs for significant changes before implementing them.",
-  },
-  {
-    question: "Will I own the source code?",
-    answer:
-      "Absolutely. You'll own all code, designs, and intellectual property created for your project. I also provide documentation so you're never locked into working only with me.",
-  },
-  {
-    question: "How involved will I need to be?",
-    answer:
-      "I handle all the technical complexity, but I'll need your input on business requirements and feedback during development. Most clients spend 1-2 hours per week in meetings and reviews.",
-  },
-  {
-    question: "Can you work with our existing systems?",
-    answer:
-      "Yes, I specialize in integrating new solutions with your current tools and databases. I'll assess your existing setup during our initial consultation.",
-  },
-  {
-    question: "What if something breaks after launch?",
-    answer:
-      "I include a 90-day warranty on all work, and I offer ongoing maintenance plans for long-term support. Since I'm local, I can respond quickly when you need help.",
-  },
+const specs = [
+  ["Discipline", "Custom software"],
+  ["Based in", "Cohoes, NY"],
+  ["Serving", "Small biz · Non-profits"],
+  ["Experience", "5+ years"],
+  ["Booking", "Summer 2026"],
+];
 
+const services = [
   {
-    question: "What if we're not happy with the results?",
-    answer:
-      "I work in phases with regular check-ins specifically to prevent this. You'll see and approve everything before we move forward. My goal is building long-term relationships, not one-time projects.",
+    n: "01",
+    icon: "blocks",
+    title: "Custom Business Software",
+    body: "Off-the-shelf only gets you so far. I build systems designed around the way your organization actually works — inventory management, fundraising tools, customer portals — instead of forcing you to change how you operate.",
   },
   {
-    question: "Do you have references?",
-    answer:
-      "Many! I'm happy to provide references from previous clients and showcase relevant work samples during our consultation.",
+    n: "02",
+    icon: "layout-grid",
+    title: "Websites & Mobile Apps",
+    body: "Easy-to-use websites and apps that work smoothly on any phone, tablet, or computer — whether they’re tools for your team or something built for your customers to use.",
   },
   {
-    question: "Do you offer discounts?",
-    answer:
-      "Yes! I offer discounts for non-profit organizations, educational institutions, and churches. Let's discuss your specific situation during our consultation.",
+    n: "03",
+    icon: "drafting-compass",
+    title: "Technical Guidance & Planning",
+    body: "Already have a developer but need direction? I help you and your team plan software that’s built to last and grows with your business — so you avoid costly mistakes down the road.",
+  },
+  {
+    n: "04",
+    icon: "wrench",
+    title: "Ongoing Development & Support",
+    body: "Upkeep, new features, and a real person to call when you need help — keeping things running smoothly as you grow. I don’t disappear once the project is finished.",
+  },
+] as const;
+
+const work = [
+  {
+    id: "pcc",
+    client: "Preston Center of Compassion",
+    type: "Non-profit",
+    duo: "duo-navy",
+    title: "Online Fundraiser Platform",
+    result:
+      "Took a Bronx non-profit’s signature fundraiser fully online during the pandemic.",
+    summary:
+      "A virtual platform for PCC’s major summer fundraiser: locals log in on desktop or mobile to make realtime donations, buy raffle tickets, and reserve dinner seats. Administrators manage the event live, track donations, and download Excel reports at any time.",
+    stats: [
+      ["Live", "Donations in real time"],
+      ["Secure", "Online payments"],
+      ["Anywhere", "Phone or computer"],
+    ],
+    stack: "Web app · Online donations & payments",
+  },
+  {
+    id: "soapbox",
+    client: "Soapbox Hosting",
+    type: "Own product",
+    duo: "duo-steel",
+    title: "Podcast Hosting Platform",
+    result:
+      "My own platform to record, edit, and publish a podcast — all from one website.",
+    summary:
+      "Soapbox makes launching and managing a podcast simple from start to finish — fast, reliable, and easy to use whether you’re a seasoned podcaster or just getting started.",
+    stats: [
+      ["All-in-one", "Record · Edit · Publish"],
+      ["Online", "Works in any browser"],
+      ["Simple", "No setup needed"],
+    ],
+    stack: "Online platform",
+  },
+  {
+    id: "rcos",
+    client: "Rensselaer Center for Open Source",
+    type: "Pro bono",
+    duo: "duo-deep",
+    title: "RCOS.io Operations Hub",
+    result:
+      "The central hub tracking hundreds of students and dozens of open-source projects each semester.",
+    summary:
+      "When RCOS scaled to hundreds of enrolled students and dozens of active projects, it needed a robust home. I built and maintain RCOS.io — tracking students, faculty advisors, projects, teams across semesters, meetings, and event attendance. Hosted affordably and maintained for free to give back to a community that shaped my early career at RPI.",
+    stats: [
+      ["100s", "Students tracked"],
+      ["Dozens", "Projects managed"],
+      ["Free", "Maintained pro bono"],
+    ],
+    stack: "Web application",
+  },
+] as const;
+
+const clients = [
+  { name: "Preston Center of Compassion", sub: "Bronx, NY · Non-profit", logo: PCCWordmark },
+  { name: "Rensselaer Center for Open Source", sub: "Troy, NY · RPI", logo: RCOSLockup },
+  { name: "Soapbox Hosting", sub: "Podcast platform", logo: null },
+];
+
+const steps = [
+  [
+    "Book a free call",
+    "Grab a consultation slot — a relaxed, no-charge call to talk through your goals, challenges, and timeline.",
+  ],
+  [
+    "Discovery",
+    "Before proposing anything, I take time to understand how your organization really works — your day-to-day, your bottlenecks, and what success looks like for you.",
+  ],
+  [
+    "Proposal",
+    "Only then do I send a detailed proposal, with an approach and pricing shaped around what I learned.",
+  ],
+  ["Kickoff", "Once you approve, I schedule a kickoff meeting and start building."],
+];
+
+const faqs = [
+  {
+    q: "Do I need to be technical to work with you?",
+    a: "Not at all — most of the people I work with run businesses and non-profits, not software teams. I handle the technical side and explain everything in plain language, so you always understand what you’re getting and why. You bring the knowledge of how your organization works; I bring the engineering.",
+  },
+  {
+    q: "What does custom software cost?",
+    a: "Project costs vary with complexity and scope, typically ranging from $10,000 for simple business tools to $75,000+ for fully comprehensive systems. I provide detailed estimates after understanding your needs, and always discuss budget upfront so we’re on the same page.",
+  },
+  {
+    q: "What are the ongoing costs after launch?",
+    a: "Beyond the build, you’ll usually have modest monthly costs for things like hosting and a domain name — often $20–$100 a month depending on the project. I lay these out clearly before we start, so there are no surprises, and I help you get everything set up.",
+  },
+  {
+    q: "Do you offer payment plans?",
+    a: "Yes. I structure payments around project milestones, so you’re never paying for work that hasn’t been completed — most projects split into 3–4 payments, often 25% upfront, 50% at milestones, and 25% at completion.",
+  },
+  {
+    q: "Do you offer discounts?",
+    a: "Yes — I offer discounts for non-profit organizations, educational institutions, and churches. Let’s discuss your specific situation during the consultation.",
+  },
+  {
+    q: "How long do projects typically take?",
+    a: "Simple applications usually take 6–12 weeks, while comprehensive business systems can take 3–6 months. I give realistic timelines upfront and keep you updated on progress throughout.",
+  },
+  {
+    q: "Will it work with the tools I already use?",
+    a: "In most cases, yes. I build around the tools you already rely on — your payment processor, accounting software, email marketing, or donor database — so your new software fits how you already work instead of replacing everything.",
+  },
+  {
+    q: "Can you fix or take over software someone else built?",
+    a: "Absolutely. I regularly step in to repair, improve, or take over projects started by a previous developer — including unfinished work or a site you’ve lost access to. I’ll review what exists, tell you honestly what’s worth keeping, and map out a path forward.",
+  },
+  {
+    q: "Will I own the source code?",
+    a: "Absolutely. You’ll own all code, designs, and intellectual property created for your project. I also provide documentation, so you’re never locked into working only with me.",
+  },
+  {
+    q: "What if something breaks after launch?",
+    a: "I include a 90-day warranty on all work, and offer ongoing maintenance plans for long-term support. Since I’m local, I can respond quickly when you need help.",
   },
 ];
 ---
@@ -86,15 +172,20 @@ const faq = [
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <title>Matranga Codeworks</title>
-    <script src="/gear-rotate.js" defer></script>
     <link rel="sitemap" href="/sitemap-index.xml" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
     <SEO
-      title="Matranga Codeworks"
-      description="Custom, local software for the NY Capital Region and beyond."
+      title="Matranga Codeworks — Custom Software for the NY Capital Region"
+      description="Custom, local software for New York Capital Region small businesses and non-profits — built by one engineer right here in the community."
       canonical="https://matrangacodeworks.com"
       charset="UTF-8"
     />
@@ -107,627 +198,511 @@ const faq = [
       defer
       src="//js-na2.hs-scripts.com/243671711.js"></script>
     <!-- End of HubSpot Embed Code -->
+
+    <noscript>
+      <style>
+        .reveal {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style>
+    </noscript>
   </head>
-  <body class="font-display text-text-dark bg-[#fdfdfd]">
-    <aside class="bg-slate-800 text-white py-2 px-3">
-      <div class="container mx-auto">
-        <p class="text-center text-sm">
-          🚀 Now booking projects for Spring 2026 and beyond!{" "}
-          <a class="underline" href="#contact">Get in touch</a> or call <a
-            class="underline"
-            href={"tel:" + CONTACT_PHONE}>{CONTACT_PHONE_DISPLAY}</a
-          > to discuss your needs.
-        </p>
+  <body>
+    <div class="announce">
+      Now booking projects for Summer 2026 and beyond —{" "}
+      <a href="#contact">get in touch</a> or call <a href={"tel:" + CONTACT_PHONE}
+        >(518)&nbsp;217&#8209;8298</a
+      >.
+    </div>
+
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="#top">
+          <Monogram width={30} height={30} style="color: var(--ink)" aria-hidden="true" />
+          <b>Matranga&nbsp;Codeworks</b>
+        </a>
+        <nav class="nav">
+          <a class="navlink" href="#services">Services</a>
+          <a class="navlink" href="#work">Work</a>
+          <a class="navlink" href="#about">About</a>
+          <a class="navlink" href="#faq">FAQ</a>
+          <a class="btn btn--primary btn--sm" href="#contact">Free consultation</a>
+        </nav>
       </div>
-    </aside>
-    <header
-      class="from-primary to-primary-500 bg-gradient-to-br min-h-[60vh] z-[1] relative overflow-hidden"
-    >
-      <Gear
-        class="absolute fill-primary-200 top-[100px] right-32 translate-x-1/2 translate-y-[-50%] hidden lg:block md:h-64 md:w-64 gear-rotate-on-scroll pointer-events-none select-none"
-      />
-      <Gear
-        data-direction="reverse"
-        class="absolute fill-primary-100 top-[300px] right-64 translate-x-1/2 translate-y-[-50%] hidden lg:block md:h-64 md:w-64 gear-rotate-on-scroll pointer-events-none select-none"
-      />
-      <Gear
-        class="absolute fill-primary-300 top-[500px] right-32 translate-x-1/2 translate-y-[-50%] hidden lg:block md:h-64 md:w-64 gear-rotate-on-scroll pointer-events-none select-none"
-      />
-
-      <Navbar />
-      <section id="splash" class="flex items-center justify-center">
-        <div
-          id="heading"
-          class="group container mx-auto flex flex-col gap-6 items-start px-6 py-16 text-primary-100"
-        >
-          <h1 class="flex flex-wrap text-5xl md:text-8xl font-bold">
-            <div class="flex">
-              <span>M</span>
-              <span>a</span>
-              <span>t</span>
-              <span>r</span>
-              <span>a</span>
-              <span>n</span>
-              <span>g</span>
-              <span>a</span>
-            </div>
-
-            &nbsp;<br class="block md:hidden" />
-            <div class="code flex">
-              <span>C</span>
-              <span>o</span>
-              <span>d</span>
-              <span>e</span>
-            </div>
-            <div class="inline-block" id="space"></div>
-            <div class="flex text-primary-300" id="works">
-              <span>w</span>
-              <span>o</span>
-              <span>r</span>
-              <span>k</span>
-              <span>s</span>
-              <span
-                class="period opacity-0 transition-opacity group-hover:opacity-100"
-                >.</span
-              >
-            </div>
-          </h1>
-          <p class="text-xl text-left md:text-2xl max-w-2xl">
-            Your local, all-in-one software partner for New York small business
-            and non-profits.
-          </p>
-
-          <div class="flex flex-col md:flex-row gap-4">
-            <Button class="hover:scale-105" href="#contact" variant="secondary"
-              >Free Consultation</Button
-            >
-            <Button
-              class="hover:scale-105"
-              href="https://www.linkedin.com/in/frank-matranga/"
-              variant="outline"
-              target="_blank">LinkedIn</Button
-            >
-          </div>
-        </div>
-      </section>
     </header>
+
     <main>
-      <section>
-        <div
-          class="hidden ontainer mx-auto flex-col md:flex-row gap-8 items-center px-6 py-16 justify-center"
-        >
-          <div class="headshot">
-            <Image
-              height={150}
-              width={150}
-              class="rounded-full border-8 border-primary-200"
-              src={HeadshotImg}
-              alt="Frank Matranga"
-            />
-          </div>
+      <!-- Hero -->
+      <section class="hero band-blue" id="top">
+        <span class="reg-mark" style="top:18px;left:18px;color:var(--draft-cyan)"></span>
+        <span class="reg-mark" style="top:18px;right:18px;color:var(--draft-cyan)"></span>
+        <div class="wrap">
           <div>
-            <p class="text-7xl">5+</p>
-            <p class="text-gray-600">Years of Experience</p>
-          </div>
-          <a
-            href="
-              https:
-              github.com
-              Apexal"
-            target="_blank"
-          >
-            <div>
-              <p class="text-7xl" id="counter"></p>
-              <p class="text-gray-600">Open Source Software Contributions</p>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <section id="testimonials">
-        <div class="container mx-auto px-6 py-16 flex flex-col gap-8">
-          <SectionHeader header="What My Clients Say" />
-          <div class="flex flex-col justify-center md:flex-row gap-8">
-            <div class="max-w-[700px] flex-1 flex flex-row items-center gap-4">
-              <div>
-                <p class="text-gray-700 mb-4 italic">
-                  <span class="text-primary">“</span>We’ve worked with Frank for
-                  years and he’s been amazing. He helped us take our fundraisers
-                  online during the pandemic so we could keep supporting the
-                  Bronx community when in-person events weren’t possible. He
-                  really understands what we’re trying to do, and thanks to his
-                  help, everything from our fundraising events to summer camp
-                  and afterschool programs runs more smoothly and reaches more
-                  families than ever before.<span class="text-primary">”</span>
-                </p>
-                <a
-                  target="_blank"
-                  href="https://www.prestoncenterofcompassion.org"
-                  class="font-semibold">- Preston Center of Compassion</a
-                >
-              </div>
-            </div>
-            <div
-              class="flex-1 hidden bg-white p-6 rounded-lg shadow border-l-6 border-secondary"
+            <span class="eyebrow" style="color:var(--brass-bright)"
+              >Custom software · Cohoes, NY</span
             >
-              <p class="text-gray-700 mb-4">
-                "The team at Matranga Codeworks is incredibly skilled and easy
-                to work with. They delivered on time and exceeded our
-                expectations."
-              </p>
-              <p class="font-semibold">- Rensselaer Center for Open Source</p>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="services" class="py-32 bg-primary-400/5">
-        <div class="container mx-auto px-6 flex flex-col gap-8">
-          <SectionHeader header="How I Help Your Local Organization Grow" />
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 service-cards">
-            <ServiceCard
-              heading="Custom Business Software"
-              subheading="You can only get so far with off-the-shelf software. I build software systems designed around your specific workflows and business processes. From inventory management, to fundraising software, to customer portals, I create solutions that actually fit how your business operates."
-            />
-            <ServiceCard
-              heading="Mobile & Web App Development"
-              subheading="I create responsive and user-friendly mobile and web applications that help you engage with your customers and streamline your operations. These can be internal applications for your organization to use or applications meant for your customers."
-            />
-            <ServiceCard
-              heading="Technical Architecture & Consulting"
-              subheading="Already have developers but need technical direction? I help you and your team design scalable and maintainable software architectures that align with your business goals."
-            />
-            <ServiceCard
-              heading="Ongoing Development & Support"
-              subheading="I provide ongoing maintenance, feature additions, and technical support to keep your systems running smoothly as your business evolves. I don't disappear with the completion of a project."
-            />
-          </div>
-        </div>
-      </section>
-      <section id="about" class="py-16">
-        <div class="container mx-auto px-6 max-w-2xl text-center">
-          <div class="p-12 rounded shadow flex flex-col gap-8 bg-primary-400/5">
-            <SectionHeader
-              header="Your Local Technical Partner"
-              subheader="Proudly based in Cohoes, NY 🏡"
-            />
-
-            <div class="headshot self-center">
-              <Image
-                height={150}
-                width={150}
-                class="rounded-full border-8 border-primary-200"
-                src={HeadshotImg}
-                alt="Frank Matranga"
-              />
-            </div>
-
-            <p>
-              I'm a NYC-born software engineer and current Director of
-              Engineering at a healthcare technology company, with a dual degree
-              from RPI in Computer Science & Information Technology and Web
-              Science, and 5+ years of deep experience building systems that
-              local businesses like yours depend on every day. Now I'm bringing
-              that expertise directly to local businesses in our community.
+            <h1>Your local software&nbsp;partner.</h1>
+            <p class="lead">
+              Custom software for New York Capital Region small businesses and
+              non&#8209;profits — built around the way your organization actually
+              works, by one engineer who's right here in the community.
             </p>
-
-            <p>
-              As a NY Capital Region resident for the past 7 years, I'm invested
-              in seeing our local businesses thrive. When you work with me,
-              you're not just hiring a developer—you're partnering with someone
-              who cares about your success and is right here in the community
-              when you need support.
-            </p>
-
-            <p>
-              When I’m not coding, you’ll find me coworking in Troy over iced
-              chai, hiking in the Catskills, or exploring Hudson Valley farmers'
-              markets.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="featured"
-        class="py-32 px-6 bg-primary-400/5 flex flex-col gap-28"
-      >
-        <SectionHeader
-          header="Featured Projects"
-          subheader="Showcasing some of my favorite recent work."
-        />
-        <div
-          class="container mx-auto flex flex-col md:flex-row gap-8 items-center"
-        >
-          <div class="flex-1 flex flex-col gap-6">
-            <div class="flex flex-col gap-2">
-              <h3 class="text-xl md:text-2xl font-semibold text-primary-800">
-                Preston Center of Compassion
-              </h3>
-              <p>
-                Preston Center of Compassion's <span
-                  class="text-primary font-semibold">August Fundraiser</span
-                > allows local residents in the Bronx, NYC to make realtime donations,
-                purchase raffle tickets, and place dinner reservations for PCC's
-                major summer fundraising event every year.
-              </p>
-            </div>
-
-            <p>
-              Locals can login via desktop or mobile to access the platform and
-              participate in the fundraiser. Participants securely checkout with
-              Stripe, never revealing their payment information. PCC
-              administrators can manage the event, track donations, and download
-              Excel reports at any time.
-            </p>
-
-            <p>
-              Built on Google's Firebase platform, the administrators can change
-              event details, turn on and off purchasing based on availability,
-              and manage the event in realtime. This virtual platform
-              complements the in-person experience by providing a seamless way
-              for locals to engage with the fundraiser from anywhere.
-            </p>
-          </div>
-
-          <div class="flex-1 flex flex-col items-center gap-4">
-            <Image
-              src={PCCWordmark}
-              alt="Preston Center of Compassion"
-              height={150}
-            />
-            <video
-              src="/videos/pcc.mp4"
-              muted
-              controls
-              class="self-stretch w-full rounded-lg shadow-lg"
-            >
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-
-        <div
-          class="container mx-auto flex flex-col md:flex-row-reverse gap-8 items-center"
-        >
-          <div class="flex-1 flex flex-col gap-6">
-            <div class="flex flex-col gap-2">
-              <h3 class="text-xl md:text-2xl font-semibold text-primary-800">
-                Soapbox Hosting
-              </h3>
-              <p>
-                <span class="text-primary font-semibold">Soapbox</span> is my own
-                podcast technology Software-as-a-Service (SaaS) platform that simplifies
-                the process of launching and managing a podcast. With Soapbox, users
-                can easily record, edit, and publish their episodes, all from a user-friendly
-                web interface.
-              </p>
-            </div>
-            <p>
-              Built with modern web technologies, Soapbox is designed to be
-              fast, reliable, and easy to use. Whether you're a seasoned
-              podcaster or just getting started, Soapbox has everything you need
-              to create and share your podcast with the world.
-            </p>
-          </div>
-          <div class="flex-1 flex flex-col items-center gap-4">
-            <video
-              src="/videos/soapbox.webm"
-              muted
-              controls
-              class="w-full h-fit rounded-lg shadow-lg"
-            >
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-
-        <div
-          class="container mx-auto flex flex-col md:flex-row gap-8 items-center"
-        >
-          <div class="flex-1 flex flex-col gap-6">
-            <div class="flex flex-col gap-2">
-              <h3 class="text-xl md:text-2xl font-semibold text-primary-800">
-                Rensselaer Center for Open Source (pro bono)
-              </h3>
-              <p>
-                <span class="text-primary font-semibold">RCOS</span> is is a community
-                of motivated students at Rensselaer Polytechnic Institute who develop
-                open source projects under the guidance of experienced instructors
-                and student mentors.
-              </p>
-            </div>
-            <p>
-              When it scaled up to hundreds of students enrolled every semester,
-              and dozens of projects always in active development, RCOS required
-              a more robust solution for managing its operations. That's where
-              my expertise came in.
-            </p>
-            <p>
-              I created and currently maintain RCOS.io, the central hub for all
-              RCOS activity. It tracks enrolled students, faculty advisors,
-              projects, project teams across semesters, meetings, event
-              attendance, and more. The web application is built with Django and
-              hosted extremely inexpensively. Since I was a part of RCOS during
-              my RPI days and owe much of my development and leadership skills
-              to the experience, I am committed to giving back to the community
-              by maintaining this platform for free.
-            </p>
-          </div>
-
-          <div class="flex-1 flex flex-col items-center gap-4">
-            <Image
-              src={RCOSLockup}
-              alt="Rensselaer Center for Open Source"
-              height={100}
-            />
-
-            <video
-              src="/videos/rcos.mp4"
-              muted
-              controls
-              class="w-full h-fit rounded-lg shadow-lg"
-            >
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="py-32 bg-primary-400/5">
-        <div class="container mx-auto px-6 flex flex-col md:flex-row gap-8">
-          <div class="flex-1 flex flex-col gap-4">
-            <h2 class="font-semibold text-2xl md:text-4xl section-header">
-              Interested in working together? Reach out now for a free
-              consultation to see how I can help you.
-            </h2>
-            <p>
-              I'll hop on a call or meet in person to get to know you, your
-              organization, and its needs. Free of charge. <em
-                >What business processes take up the most time? What would you
-                automate if you could? What software frustrations do you have?</em
-              > These are the questions I want to explore with you.
-            </p>
-            <ul class="list-disc pl-6">
-              <li>
-                <strong>Initial Consultation:</strong> I'll discuss your project
-                goals, challenges, and timeline.
-              </li>
-              <li>
-                <strong>Proposal:</strong> Based on our conversation, I'll provide
-                a detailed proposal outlining my approach and pricing.
-              </li>
-              <li>
-                <strong>Kickoff:</strong> Once you approve the proposal, I'll schedule
-                a kickoff meeting to start the project.
-              </li>
-            </ul>
-          </div>
-          <div class="flex-1">
-            <div class="bg-white p-8 rounded shadow">
-              <!-- <form
-                name="contact"
-                method="POST"
-                data-netlify="true"
-                class="flex flex-col gap-8"
+            <div class="hero-cta">
+              <a class="btn btn--on-blue btn--lg" href="#contact">Free consultation</a>
+              <a
+                class="btn btn--lg"
+                href="#work"
+                style="color:var(--blueprint-ink);border-color:var(--blueprint-600)"
+                >See featured work</a
               >
-                <div class="flex flex-col gap-1">
-                  <label
-                    for="name"
-                    class="block text-sm font-medium text-gray-700">Name</label
-                  >
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    required
-                    class="block w-full border border-gray-300 rounded-md shadow-sm p-3"
-                    placeholder="Jane Doe"
-                  />
-                </div>
-                <div class="flex flex-col gap-1">
-                  <label
-                    for="email"
-                    class="block text-sm font-medium text-gray-700">Email</label
-                  >
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="jane.doe@example.com"
-                    required
-                    class="block w-full border border-gray-300 rounded-md shadow-sm p-3"
-                  />
-                </div>
-                <div class="flex flex-col gap-1">
-                  <label
-                    for="company"
-                    class="block text-sm font-medium text-gray-700"
-                    >Company</label
-                  >
-                  <input
-                    type="text"
-                    name="company"
-                    id="company"
-                    placeholder="ACME Corp"
-                    required
-                    class="block w-full border border-gray-300 rounded-md shadow-sm p-3"
-                  />
-                </div>
-                <div class="flex flex-col gap-1">
-                  <label
-                    for="message"
-                    class="block text-sm font-medium text-gray-700"
-                    >How can I help?</label
-                  >
-                  <textarea
-                    name="message"
-                    id="message"
-                    rows="4"
-                    required
-                    class="block w-full border border-gray-300 rounded-md shadow-sm p-3 min-h-12 max-h-64"
-                    placeholder="I'm looking for..."></textarea>
-                </div>
-                <Button type="submit" variant="secondary">Get in Touch</Button>
-              </form> -->
-
-              <!-- Google Calendar Appointment Scheduling begin -->
-              <iframe
-                src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3MX94psMGAFeCoftM2SwascHtxoRfUt1k8t3HSvZto2cFc9JuAYmKQ7h0kmv_00HgTaHkqGKOf?gv=true"
-                style="border: 0"
-                width="100%"
-                height="600"
-                frameborder="0"></iframe>
-              <!-- end Google Calendar Appointment Scheduling -->
             </div>
           </div>
-        </div>
-      </section>
-
-      <section id="faq" class="py-32">
-        <div class="container px-6 mx-auto max-w-2xl flex flex-col gap-8">
-          <h2
-            class="section-header font-semibold text-2xl md:text-4xl text-center"
-          >
-            Frequently Asked Questions
-          </h2>
-
-          <div class="flex flex-col gap-8">
+          <div class="hero-spec">
+            <span class="reg-mark" style="top:10px;right:10px;color:var(--blueprint-ink-2)"
+            ></span>
+            <div
+              style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--blueprint-ink-2);margin-bottom:8px"
+            >
+              The works · spec sheet
+            </div>
             {
-              faq.map(({ question, answer }) => (
-                <details>
-                  <summary class="block font-semibold text-xl md:text-2xl text-primary-900">
-                    <div class="border-b-2 border-primary py-2 cursor-pointer flex justify-between">
-                      <span>{question}</span>
-                      <span class="text-primary-500">
-                        <CaretDownBold class="caret w-8 h-8 fill-primary-500" />
-                      </span>
-                    </div>
-                  </summary>
-                  <p class="py-2">{answer}</p>
-                </details>
+              specs.map(([k, v]) => (
+                <div class="spec-row">
+                  <span class="k">{k}</span>
+                  <span class="v">{v}</span>
+                </div>
               ))
             }
           </div>
         </div>
       </section>
+
+      <!-- Services -->
+      <section class="section" id="services">
+        <div class="wrap">
+          <div class="section-head">
+            <span class="eyebrow">Section 01 — Capabilities</span>
+            <h2 class="section-title">How I help your local organization grow</h2>
+          </div>
+          <div class="svc-grid">
+            {
+              services.map((it, i) => (
+                <div class="svc-card reveal" style={`transition-delay:${i * 70}ms`}>
+                  <span class="num">{it.n}</span>
+                  <Icon name={it.icon} size={30} color="var(--brass-deep)" />
+                  <h3>{it.title}</h3>
+                  <p>{it.body}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured work -->
+      <section class="section band-blue" id="work">
+        <div class="wrap">
+          <div class="section-head">
+            <span class="eyebrow" style="color:var(--brass-bright)"
+              >Section 02 — Featured projects</span
+            >
+            <h2 class="section-title">A few things I’ve built</h2>
+          </div>
+          <div class="work-grid">
+            {
+              work.map((w, i) => (
+                <button
+                  type="button"
+                  class="work-card reveal"
+                  style={`transition-delay:${i * 80}ms`}
+                  data-open-work={w.id}
+                >
+                  <div class={"work-img " + w.duo}>
+                    <span class="badge">{w.type}</span>
+                  </div>
+                  <div class="work-body">
+                    <h3>{w.title}</h3>
+                    <p class="result">{w.result}</p>
+                    <span class="more">
+                      View case{" "}
+                      <Icon name="arrow-right" size={14} color="var(--brass-deep)" />
+                    </span>
+                  </div>
+                </button>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- Clients / logo wall -->
+      <section class="section--tight clients-band">
+        <div class="wrap">
+          <div class="clients-head">
+            <span class="eyebrow">Trusted by</span>
+            <h2 class="clients-title">Organizations I’ve worked with</h2>
+          </div>
+          <div class="client-grid">
+            {
+              clients.map((c, i) => (
+                <div class="reveal" style={`transition-delay:${i * 70}ms`}>
+                  <div class="client-mark" title={c.name}>
+                    <span class="reg-mark" style="top:8px;left:8px;color:var(--hairline-2)" />
+                    <span class="reg-mark" style="top:8px;right:8px;color:var(--hairline-2)" />
+                    {c.logo ? (
+                      <Image src={c.logo} alt={c.name} width={320} densities={[1, 2]} />
+                    ) : (
+                      <span class="wordmark">{c.name}</span>
+                    )}
+                    {c.sub && <span class="client-sub">{c.sub}</span>}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+          <p class="clients-note">
+            Proudly serving small businesses &amp; non-profits across Albany, Troy,
+            Schenectady, Saratoga &amp; the greater Capital Region.
+          </p>
+        </div>
+      </section>
+
+      <!-- Testimonial -->
+      <section
+        class="section--tight"
+        style="background:var(--paper-2);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)"
+      >
+        <div class="wrap">
+          <div class="quote-wrap reveal">
+            <div class="quote-mark">&ldquo;</div>
+            <p class="quote-body">
+              We’ve worked with Frank for years and he’s been amazing. He helped us take
+              our fundraisers online during the pandemic so we could keep supporting the
+              Bronx community. He really understands what we’re trying to do — everything
+              from our fundraising events to summer camp and afterschool programs runs more
+              smoothly and reaches more families than ever before.
+            </p>
+            <div class="quote-attr">— Preston Center of Compassion</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section class="section about--paper" id="about">
+        <div class="wrap">
+          <div class="about-grid">
+            <div class="portrait reveal">
+              <Image
+                src={HeadshotImg}
+                alt="Frank Matranga"
+                width={320}
+                height={400}
+                class="portrait-img"
+              />
+              <span class="portrait-scrim"></span>
+              <span class="reg-mark" style="top:12px;left:12px;color:var(--draft-cyan)"></span>
+              <span class="reg-mark" style="top:12px;right:12px;color:var(--draft-cyan)"></span>
+              <span class="tag">FRANK MATRANGA · COHOES, NY</span>
+            </div>
+            <div class="reveal" style="transition-delay:90ms">
+              <span class="eyebrow">Section 03 — Your local technical partner</span>
+              <h2 style="margin-top:16px">
+                Right here in the community, when you need&nbsp;support.
+              </h2>
+              <p>
+                I’m Frank Matranga — a NYC-born software engineer and current Director of
+                Engineering at a healthcare technology company, with a dual degree from RPI
+                in Computer Science &amp; Information Technology and Web Science.
+              </p>
+              <p>
+                I’ve spent 5+ years building systems local businesses depend on every day.
+                After seven years in the Capital Region, I’m invested in seeing our local
+                organizations thrive — work with me and you’re partnering with someone who
+                cares about your success and is right here when you need support.
+              </p>
+              <p style="color:var(--ink-3);font-size:15.5px">
+                When I’m not coding, you’ll find me coworking in Troy over an iced chai,
+                hiking the Catskills, or wandering Hudson Valley farmers’ markets.
+              </p>
+              <div class="sig">— Frank Matranga</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section" id="faq">
+        <div class="wrap">
+          <div class="section-head">
+            <span class="eyebrow">Section 04 — Common questions</span>
+            <h2 class="section-title">Frequently asked questions</h2>
+          </div>
+          <div class="faq-list">
+            {
+              faqs.map((f, i) => (
+                <div class={"faq-item" + (i === 0 ? " open" : "")}>
+                  <button class="faq-q" aria-expanded={i === 0 ? "true" : "false"}>
+                    {f.q}
+                    <span class="chev">
+                      <Icon name="plus" size={20} color="var(--brass-deep)" />
+                    </span>
+                  </button>
+                  <div class="faq-a">
+                    <p>{f.a}</p>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="section" id="contact">
+        <div class="wrap">
+          <div class="section-head">
+            <span class="eyebrow">Section 05 — Start a project</span>
+            <h2 class="section-title">Interested in working together?</h2>
+            <p
+              style="font-size:17px;line-height:1.6;color:var(--ink-2);margin:0;max-width:54ch"
+            >
+              Pick a time that works for you and we’ll talk — a free consultation to get to
+              know you, your organization, and its needs. No charge, no obligation.
+            </p>
+          </div>
+          <div class="contact-grid contact-grid--book">
+            <div class="schedule">
+              <div class="schedule-head">
+                <Icon name="calendar-check" size={18} color="var(--brass-deep)" />
+                <span>Book a free consultation</span>
+              </div>
+              <!-- Google Calendar Appointment Scheduling begin -->
+              <iframe
+                title="Schedule a free consultation with Frank Matranga"
+                src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3MX94psMGAFeCoftM2SwascHtxoRfUt1k8t3HSvZto2cFc9JuAYmKQ7h0kmv_00HgTaHkqGKOf?gv=true"
+                width="100%"
+                height="640"
+                style="border:0;display:block"></iframe>
+              <!-- end Google Calendar Appointment Scheduling -->
+            </div>
+            <div class="contact-aside">
+              <div class="proc">
+                {
+                  steps.map(([t, d], i) => (
+                    <div class="proc-step">
+                      <span class="proc-n">{String(i + 1).padStart(2, "0")}</span>
+                      <div>
+                        <div class="proc-t">{t}</div>
+                        <div class="proc-d">{d}</div>
+                      </div>
+                    </div>
+                  ))
+                }
+              </div>
+              <div class="contact-lines">
+                <a class="line" href={"mailto:" + CONTACT_EMAIL}>
+                  <Icon name="mail" size={18} color="var(--brass-deep)" />
+                  {CONTACT_EMAIL}
+                </a>
+                <a class="line" href={"tel:" + CONTACT_PHONE}>
+                  <Icon name="phone" size={18} color="var(--brass-deep)" />
+                  {CONTACT_PHONE_DISPLAY}
+                </a>
+                <span class="line">
+                  <Icon name="map-pin" size={18} color="var(--brass-deep)" />
+                  Cohoes, New York
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <footer class="bg-primary text-white py-8">
-      <div
-        class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6"
-      >
-        <div class="text-center md:text-left flex-1 flex flex-col gap-1">
-          <h3 class="text-xl font-medium mb-2">
-            Matranga Code<span class="text-primary-400">works</span>
-          </h3>
-          <a class="underline" href={"mailto:" + CONTACT_EMAIL}>
-            {CONTACT_EMAIL}
+    <footer class="site-footer band-blue" id="footer">
+      <div class="wrap">
+        <div class="footer-top">
+          <a class="brand" href="#top" style="align-items:flex-start">
+            <Monogram
+              width={38}
+              height={38}
+              style="color: var(--blueprint-ink)"
+              aria-hidden="true"
+            />
+            <span>
+              <b style="color:var(--blueprint-ink);display:block">Matranga&nbsp;Codeworks</b>
+              <span
+                style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.16em;color:var(--draft-cyan)"
+                >YOUR LOCAL SOFTWARE PARTNER</span
+              >
+            </span>
           </a>
-          <a href={"tel:" + CONTACT_PHONE}>
-            {CONTACT_PHONE_DISPLAY}
-          </a>
-          <p>{COMPANY_LOCATION}</p>
+          <div class="footer-cols">
+            <div class="footer-col">
+              <span class="h">Studio</span>
+              <a href="#services">Services</a>
+              <a href="#work">Featured work</a>
+              <a href="#about">My story</a>
+              <a href="#faq">FAQ</a>
+              <a href="#contact">Free consultation</a>
+            </div>
+            <div class="footer-col">
+              <span class="h">Get in touch</span>
+              <a href={"mailto:" + CONTACT_EMAIL}>{CONTACT_EMAIL}</a>
+              <a href={"tel:" + CONTACT_PHONE}>{CONTACT_PHONE_DISPLAY}</a>
+              <a href="https://www.linkedin.com/in/frank-matranga/" target="_blank" rel="noreferrer"
+                >LinkedIn</a
+              >
+              <a href="#footer">Cohoes, NY</a>
+            </div>
+          </div>
         </div>
-        <nav
-          class="flex-1 flex flex-col md:flex-row gap-4 md:gap-8 justify-center"
-        >
-          <a href="#" class="hover:underline">Back to Top</a>
-        </nav>
-        <div class="flex-1 text-center md:text-right text-sm text-white/80">
-          &copy; {new Date().getFullYear()}
-          {COMPANY_LEGAL_NAME}. All rights reserved.
+        <div class="footer-rule"></div>
+        <div class="footer-bottom">
+          <span>© {new Date().getFullYear()} MATRANGA CODEWORKS LLC · ALL RIGHTS RESERVED</span>
+          <span>BUILT IN NEW YORK'S CAPITAL REGION</span>
         </div>
       </div>
     </footer>
+
+    <!-- Case-study modals -->
+    {
+      work.map((w) => (
+        <div class="modal-scrim" data-modal={w.id} style="display:none">
+          <div class="modal">
+            <div class={"mhead " + w.duo}>
+              <button class="mclose" aria-label="Close">
+                <Icon name="x" size={18} color="#fff" />
+              </button>
+              <span
+                class="badge"
+                style="background:rgba(11,34,54,0.7);color:var(--draft-cyan);border-color:rgba(141,186,228,0.4)"
+              >
+                {w.type}
+              </span>
+            </div>
+            <div class="mbody">
+              <div
+                style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.08em;color:var(--ink-3);margin-bottom:6px"
+              >
+                {w.client}
+              </div>
+              <h3>{w.title}</h3>
+              <div class="stat-row">
+                {w.stats.map(([n, l]) => (
+                  <div class="stat">
+                    <div class="n">{n}</div>
+                    <div class="l">{l}</div>
+                  </div>
+                ))}
+              </div>
+              <p style="font-size:16px;line-height:1.62;color:var(--ink-2);margin:0">
+                {w.summary}
+              </p>
+              <div
+                style="margin-top:22px;display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:12px;color:var(--brass-deep);letter-spacing:0.04em"
+              >
+                <Icon name="blocks" size={16} color="var(--brass-deep)" />
+                {w.stack}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+
+    <style>
+      /* Real headshot fills the design's portrait frame (4/5 blueprint card). */
+      .portrait {
+        background: var(--blueprint-800);
+      }
+      .portrait-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .portrait-scrim {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(11, 34, 54, 0.78), transparent 46%);
+      }
+      .portrait .reg-mark,
+      .portrait .tag {
+        position: relative;
+        z-index: 1;
+      }
+    </style>
+
+    <script>
+      // Reveal-on-scroll
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduce) {
+        document.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("in");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.15 },
+        );
+        document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+      }
+
+      // FAQ accordion — one open at a time
+      document.querySelectorAll<HTMLButtonElement>(".faq-q").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          if (!item) return;
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll(".faq-item.open").forEach((o) => {
+            o.classList.remove("open");
+            o.querySelector(".faq-q")?.setAttribute("aria-expanded", "false");
+          });
+          if (!isOpen) {
+            item.classList.add("open");
+            btn.setAttribute("aria-expanded", "true");
+          }
+        });
+      });
+
+      // Work case-study modals
+      const closeModals = () => {
+        document
+          .querySelectorAll<HTMLElement>(".modal-scrim")
+          .forEach((m) => (m.style.display = "none"));
+        document.body.style.overflow = "";
+      };
+      document.querySelectorAll<HTMLElement>("[data-open-work]").forEach((card) => {
+        card.addEventListener("click", () => {
+          const id = card.getAttribute("data-open-work");
+          const modal = document.querySelector<HTMLElement>(
+            `.modal-scrim[data-modal="${id}"]`,
+          );
+          if (modal) {
+            modal.style.display = "grid";
+            document.body.style.overflow = "hidden";
+          }
+        });
+      });
+      document.querySelectorAll<HTMLElement>(".modal-scrim").forEach((scrim) => {
+        scrim.addEventListener("click", (e) => {
+          if (e.target === scrim) closeModals();
+        });
+      });
+      document
+        .querySelectorAll<HTMLButtonElement>(".modal .mclose")
+        .forEach((b) => b.addEventListener("click", closeModals));
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModals();
+      });
+    </script>
   </body>
 </html>
-
-<style scoped>
-  .caret {
-    transition: transform 0.2s ease;
-  }
-  details[open] .caret {
-    transform: rotate(180deg);
-  }
-
-  @property --num {
-    syntax: "<integer>";
-    initial-value: 0;
-    inherits: false;
-  }
-
-  #counter {
-    animation: counter 5s 1 alternate ease-in-out;
-    counter-reset: num var(--num);
-    animation-fill-mode: forwards;
-  }
-
-  #counter::after {
-    content: counter(num) "+";
-  }
-
-  @keyframes counter {
-    from {
-      --num: 0;
-    }
-    to {
-      --num: 14900;
-    }
-  }
-</style>
-
-<script type="module">
-  import {
-    animate,
-    scroll,
-    stagger,
-    inView,
-  } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
-
-  inView(".headshot", (element) => {
-    animate(
-      element,
-      { opacity: [0, 1], y: [20, 0] },
-      { duration: 0.5, easing: "ease-out" }
-    );
-  });
-
-  inView(".service-cards", (element) => {
-    animate(
-      ".service-cards .service",
-      { opacity: [0, 1], y: [20, 0] },
-      { delay: stagger(0.25), duration: 0.5, easing: "ease-out" }
-    );
-  });
-
-  inView(".section-header", (element) => {
-    animate(
-      element,
-      { opacity: [0, 1], y: [20, 0] },
-      { duration: 0.5, easing: "ease-out", delay: 0.15 }
-    );
-  });
-
-  animate(
-    "#heading h1 span:not(.period)",
-    { opacity: [0, 1], y: [-20, 0] },
-    { delay: stagger(0.02) }
-  );
-
-  animate(
-    "aside > div",
-    { opacity: [0, 1], y: [-20, 0] },
-    { delay: stagger(0.05) }
-  );
-
-  inView("#faq", (element) => {
-    animate(
-      "#faq details",
-      { opacity: [0, 1], x: [-20, 0] },
-      {
-        delay: stagger(0.1),
-      }
-    );
-  });
-</script>

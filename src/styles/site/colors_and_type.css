@@ -1,0 +1,267 @@
+/* ============================================================================
+   MATRANGA CODEWORKS — Design Tokens
+   "The Draughtsman's Table" — paper & ink, blueprint navy, brass hardware.
+   Load fonts before this file:
+   <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+   ============================================================================ */
+
+:root {
+  /* ---- Type families ---------------------------------------------------- */
+  --font-display: "Spectral", "Iowan Old Style", Georgia, serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* ---- Paper & ink (primary light surface) ------------------------------ */
+  --paper:        #F6F2E9; /* draughting paper, main background */
+  --paper-2:      #EFE8D8; /* recessed panel / alt row */
+  --paper-3:      #E7DECA; /* deeper tint */
+  --ink:          #15212B; /* near-black navy ink — primary text */
+  --ink-2:        #43525E; /* secondary text */
+  --ink-3:        #6B7884; /* tertiary / captions */
+  --hairline:     #D8CFBC; /* warm rule / border on paper */
+  --hairline-2:   #C7BCA3; /* stronger rule */
+
+  /* ---- Blueprint (dark feature surface) --------------------------------- */
+  --blueprint-900: #0B2236;
+  --blueprint-800: #0F2B43;
+  --blueprint-700: #16395A;
+  --blueprint-600: #1F4A72;
+  --blueprint-ink: #DCE7F2; /* text on blueprint */
+  --blueprint-ink-2: #92AEC9; /* secondary text on blueprint */
+  --draft-cyan:    #7FB2DD; /* draughting line highlight */
+  --blueprint-line: rgba(141, 186, 228, 0.16); /* grid line on blueprint */
+  --paper-line:    rgba(43, 60, 75, 0.08);      /* grid line on paper */
+
+  /* ---- Brass (hardware accent) ------------------------------------------ */
+  --brass:        #BC8038; /* primary accent */
+  --brass-deep:   #9C6726; /* hover / pressed */
+  --brass-bright: #D8A65A; /* highlight on dark */
+  --brass-tint:   #EADBC0; /* soft fill on paper */
+
+  /* ---- Redline (annotation — use sparingly) ----------------------------- */
+  --redline:      #B5462F;
+  --redline-tint: #F0D9D0;
+
+  /* ---- Graphite (cool UI neutral scale) --------------------------------- */
+  --graphite-50:  #F4F6F8;
+  --graphite-100: #E6EAEE;
+  --graphite-200: #CDD5DD;
+  --graphite-300: #AAB6C1;
+  --graphite-400: #7E8D9B;
+  --graphite-500: #5C6B79;
+  --graphite-600: #45525E;
+  --graphite-700: #333E48;
+  --graphite-800: #232C34;
+  --graphite-900: #15212B;
+
+  /* ---- Semantic --------------------------------------------------------- */
+  --success:      #3E7D55;
+  --success-tint: #DDE9DF;
+  --warning:      #B8852E;
+  --warning-tint: #F0E2C5;
+  --danger:       #B5462F;
+  --danger-tint:  #F0D9D0;
+  --info:         #2F6D9E;
+  --info-tint:    #D6E3EE;
+
+  /* ---- Role aliases ----------------------------------------------------- */
+  --bg:           var(--paper);
+  --surface:      #FBF8F1;     /* raised card on paper */
+  --fg:           var(--ink);
+  --fg-muted:     var(--ink-2);
+  --fg-subtle:    var(--ink-3);
+  --border:       var(--hairline);
+  --accent:       var(--brass);
+  --accent-fg:    #FBF8F1;
+
+  /* ---- Spacing (4px base) ----------------------------------------------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  /* ---- Radii (engineered, restrained) ----------------------------------- */
+  --r-xs: 2px;
+  --r-sm: 4px;
+  --r-md: 6px;
+  --r-lg: 10px;
+  --r-pill: 999px;
+
+  /* ---- Borders ---------------------------------------------------------- */
+  --bw: 1px;      /* hairline */
+  --bw-2: 1.5px;  /* emphasized rule */
+
+  /* ---- Shadows (soft, warm on paper; crisp on blueprint) ---------------- */
+  --shadow-sm: 0 1px 2px rgba(21, 33, 43, 0.06), 0 1px 1px rgba(21, 33, 43, 0.04);
+  --shadow-md: 0 4px 12px rgba(21, 33, 43, 0.08), 0 1px 3px rgba(21, 33, 43, 0.06);
+  --shadow-lg: 0 16px 40px rgba(21, 33, 43, 0.12), 0 4px 10px rgba(21, 33, 43, 0.06);
+  --shadow-brass: 0 2px 0 var(--brass-deep);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+
+  /* ---- Motion ----------------------------------------------------------- */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 160ms;
+  --dur: 320ms;
+  --dur-slow: 560ms;
+
+  /* ---- Draughting grid (reusable backgrounds) --------------------------- */
+  --grid-paper:
+    linear-gradient(var(--paper-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--paper-line) 1px, transparent 1px);
+  --grid-blueprint:
+    linear-gradient(var(--blueprint-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--blueprint-line) 1px, transparent 1px);
+  --grid-size: 24px;
+}
+
+/* ============================================================================
+   SEMANTIC TYPE STYLES
+   Display/headings in Spectral; body in Plex Sans; labels & data in Plex Mono.
+   ============================================================================ */
+
+.t-display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(44px, 6vw, 76px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.t-h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(36px, 4.4vw, 54px);
+  line-height: 1.06;
+  letter-spacing: -0.018em;
+  color: var(--ink);
+}
+
+.t-h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 1.12;
+  letter-spacing: -0.014em;
+  color: var(--ink);
+}
+
+.t-h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.t-h4 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+
+.t-lead {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.t-body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.62;
+  color: var(--ink-2);
+}
+
+.t-small {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+
+/* Mono annotation / eyebrow / dimension label */
+.t-label {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brass-deep);
+}
+
+.t-meta {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  color: var(--ink-3);
+}
+
+/* ============================================================================
+   REUSABLE MOTIF UTILITIES
+   ============================================================================ */
+
+/* Fine draughting grid behind any surface */
+.bp-grid {
+  background-image: var(--grid-paper);
+  background-size: var(--grid-size) var(--grid-size);
+}
+.bp-grid--blue {
+  background-color: var(--blueprint-800);
+  background-image: var(--grid-blueprint);
+  background-size: var(--grid-size) var(--grid-size);
+  color: var(--blueprint-ink);
+}
+
+/* Mono eyebrow with a leading tick */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brass-deep);
+}
+.eyebrow::before {
+  content: "";
+  width: 18px;
+  height: 1.5px;
+  background: var(--brass);
+}
+
+/* Corner registration crosshair (blueprint corner mark) */
+.reg-mark {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  opacity: 0.5;
+}
+.reg-mark::before,
+.reg-mark::after {
+  content: "";
+  position: absolute;
+  background: currentColor;
+}
+.reg-mark::before { left: 50%; top: 0; width: 1px; height: 100%; transform: translateX(-50%); }
+.reg-mark::after  { top: 50%; left: 0; height: 1px; width: 100%; transform: translateY(-50%); }

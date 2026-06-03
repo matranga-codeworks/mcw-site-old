@@ -1,0 +1,12 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Matranga Codeworks monogram">
+  
+  <path d="M62.30 27.08 L67.29 18.64 L74.36 20.53 L74.47 30.34 L78.45 32.64 L87.00 27.83 L92.17 33.00 L87.36 41.55 L89.66 45.53 L99.47 45.64 L101.36 52.71 L92.92 57.70 L92.92 62.30 L101.36 67.29 L99.47 74.36 L89.66 74.47 L87.36 78.45 L92.17 87.00 L87.00 92.17 L78.45 87.36 L74.47 89.66 L74.36 99.47 L67.29 101.36 L62.30 92.92 L57.70 92.92 L52.71 101.36 L45.64 99.47 L45.53 89.66 L41.55 87.36 L33.00 92.17 L27.83 87.00 L32.64 78.45 L30.34 74.47 L20.53 74.36 L18.64 67.29 L27.08 62.30 L27.08 57.70 L18.64 52.71 L20.53 45.64 L30.34 45.53 L32.64 41.55 L27.83 33.00 L33.00 27.83 L41.55 32.64 L45.53 30.34 L45.64 20.53 L52.71 18.64 L57.70 27.08 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
+  
+  <circle cx="60" cy="60" r="25" stroke="currentColor" stroke-width="1" stroke-dasharray="2 4" opacity="0.55"></circle>
+  
+  <path d="M60 2 V12 M60 108 V118 M2 60 H12 M108 60 H118" stroke="currentColor" stroke-width="2" stroke-linecap="square"></path>
+  
+  <path d="M48 70 L60 49 L72 70" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="none"></path>
+  
+  <circle cx="60" cy="60" r="4.5" fill="#BC8038"></circle>
+</svg>
