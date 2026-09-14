@@ -12,7 +12,7 @@
     "@astrojs/sitemap": "^3.5.0",
     "@tailwindcss/vite": "^4.1.11",
     "astro": "^5.13.2",
-    "astro-compressor": "^1.1.2",
+    "astro-compressor": "^2.0.0",
     "astro-seo": "^0.8.4",
     "sharp": "^0.34.3",
     "tailwindcss": "^4.1.11"
